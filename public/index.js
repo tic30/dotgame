@@ -2,6 +2,7 @@ const slider = document.getElementById("myRange"),
     output = document.getElementById("demo"),
     gameBody = document.getElementById("game-body"),
     startBtn = document.getElementById("startbtn"),
+    colors = ["#176BEF", "#FF3E30", "#F7B529", "#179C52"],
     tickRatio = 5
 let speed, pause, dotarr, timecounter, dotId
 
@@ -54,7 +55,8 @@ function timeTick() {
             id: dotId,
             width: randWidth,
             top: -randWidth,
-            x: randX
+            x: randX,
+            color: colors[Math.floor(Math.random() * 4)]
         }
         dotarr.push(dot)
         timecounter = 0
@@ -78,8 +80,9 @@ function timeTick() {
 }
 
 function handleDotClick(ele){
+    if (pause) return
     let score
-    for (i = 0; i < dotarr.length; i++) {
+    for (let i = 0; i < dotarr.length; i++) {
         if (dotarr[i].id == ele.id){
             score = Math.ceil((100-dotarr[i].width)/9)
             dotarr.splice(i,1)

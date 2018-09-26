@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Dot Game</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 </head>
+
 <body>
-  <div class="container">
-      <div class="header">
-          <div>
-            <h1 class="score">0</h1>
-            <div class="slidecontainer">
-                <input type="range" min="10" max="100" value="10" class="slider" id="myRange">
-                <p class="subtitle">Speed: <span id="demo"></span></p>
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="star"></div>
+            <div class="kirby"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1 class="score">0</h1>
+                <div class="slidecontainer">
+                    <input type="range" min="10" max="100" value="10" class="slider" id="myRange">
+                    <p class="subtitle">Speed: <span id="demo"></span></p>
+                </div>
             </div>
-          </div>
-          <button class="btn" id="startbtn" onclick="start()">Start</button>
-      </div>
-      <div id="game-body"></div>
-  </div>
-  <script id="template" type="text/html">
-    <div class="dot" id="{id}" style="width:{width}px; height:{width}px; top:{top}px; left:{x}px; background-color:{color}" onclick="handleDotClick(this)"></div>
+            <button class="btn" id="startbtn" onclick="start()">Start</button>
+        </div>
+        <div id="game-body"></div>
+    </div>
+    <script id="template" type="text/html">
+    <div class="dot star" id="{id}" style="width:{width}px; height:{width}px; top:{top}px; left:{x}px;" onmousedown="handleDotClick(this)"></div>
   </script>
-  <script src="/index.js"></script>
+    <script src="/index.js"></script>
 </body>
+
 </html>

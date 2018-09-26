@@ -1,8 +1,13 @@
 html,body{
+    position: relative;
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden;
+}
+*{
+    box-sizing: border-box
 }
 body{
     display: flex;
@@ -10,12 +15,79 @@ body{
     justify-content: center;
     font-family: 'Roboto', sans-serif;
 }
+.preloader{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: circle(100%);
+    -webkit-transition: all 0.5s ease-out;
+     -moz-transition: all 0.5s ease-out;
+        transition: all 0.5s ease-out;
+    transition-delay: 1s;
+}
+.pre-clip{
+    clip-path: circle(0px at center)
+}
+.preloader-inner{
+    position: relative;
+    width: 300px;
+    height: 200px;
+}
+.preloader-inner .star{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    margin: 0 50% 0;
+    transform: translate(-50px, 0);
+    -webkit-transition: all 0.5s ease-out;
+     -moz-transition: all 0.5s ease-out;
+        transition: all 0.5s ease-out;
+    animation-name: drag;
+    animation-duration: 2s;
+    // animation-delay: 0.2s;
+    animation-fill-mode: forwards
+}
+@keyframes drag {
+    0%   {transform: translate(-50px, 0);}
+    10%  {transform: translate(-50px, 0);}
+    20%  {transform: translate(-50px, -20px);}
+    40% {transform: translate(-50px, 50px);}
+    100% {transform: translate(-50px, -170px);}
+}
+.preloader .kirby{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    margin: 100px 50% 0;
+    transform: translate(-50px, 0);
+    background: url('./kirby.png') center center no-repeat;
+    background-size: 100%;
+    -webkit-transition: all 0.5s ease-out;
+     -moz-transition: all 0.5s ease-out;
+        transition: all 0.5s ease-out;
+    animation-name: jump;
+    animation-duration: 2s;
+    animation-fill-mode: forwards
+}
+@keyframes jump {
+    0%   {transform: translate(-50px, 0);}
+    20%  {transform: translate(-50px, -50px);}
+    40%  {transform: translate(-50px, 20px);}
+    100% {transform: translate(-50px, -200px);}
+}
+
 .container{
     position: relative;
     height: 100%;
     width: 100%;
-    max-width: 400px;
-    max-height: 700px;
+    background:#000 url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
     border-radius: 1px;
     overflow: hidden;
     box-shadow: 1px 1px 5px #aaa;
@@ -23,15 +95,21 @@ body{
     flex-direction: column
 }
 .header{
-    position: relative;
+    position: absolute;
+    left: 10px;
+    top: 10px;
     height: 100px;
+    width: calc(100% - 20px);
+    max-width: 400px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    box-shadow: 1px 1px 5px #aaa;
     background-color: white;
     z-index: 1;
     padding: 0 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
 .btn{
     border: 1px solid #ccc;
@@ -88,17 +166,18 @@ body{
 #game-body{
     position: relative;
     flex-grow: 1;
+    cursor: url('./cursor.png'), auto;	
 }
 
+.star{
+    background: url('./star.png') center center no-repeat;
+    background-size: 100%;
+}
 .dot{
     position: absolute;
-    border-radius: 50%;
-    // border: 2px solid #333;
-    // background-color: white;
-    box-shadow: 1px 1px 5px #aaa;
 }
 .dot:hover{
-    cursor: pointer;
+    cursor: url('./inhale.png'), auto;;
 }
 
 .score{

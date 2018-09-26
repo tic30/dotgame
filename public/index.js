@@ -3,8 +3,8 @@ const slider = document.getElementById("myRange"),
     gameBody = document.getElementById("game-body"),
     startBtn = document.getElementById("startbtn"),
     colors = ["#176BEF", "#FF3E30", "#F7B529", "#179C52"],
-    tickRatio = 5
-let speed, pause, dotarr, timecounter, dotId
+    tickRatio = 30
+let speed, pause, dotarr, timecounter, dotId, windowWidth
 
 function init() {
     speed = 10
@@ -48,7 +48,7 @@ function timeTick() {
     let gameBodyH = gameBody.clientHeight
     //add new
     if (timecounter == tickRatio) {
-        let randX = Math.floor(Math.random() * 200) + 100,
+        let randX = Math.floor(Math.random() * (windowWidth - 200)) + 100,
             randWidth = Math.floor(Math.random() * 90) + 10
         dotId += 1
         let dot = {
@@ -80,7 +80,7 @@ function timeTick() {
 }
 
 function handleDotClick(ele){
-    if (pause) return
+    // if (pause) return
     let score
     for (let i = 0; i < dotarr.length; i++) {
         if (dotarr[i].id == ele.id){
@@ -100,6 +100,7 @@ function addScore(score){
 
 document.addEventListener("DOMContentLoaded", function () {
     output.innerHTML = slider.value
+    windowWidth = window.innerWidth
 
     slider.oninput = function () {
         speed = parseInt(this.value)
@@ -108,3 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     init()
 })
+
+window.onload = function(){
+    document.querySelector(".preloader").classList.add("pre-clip")
+}

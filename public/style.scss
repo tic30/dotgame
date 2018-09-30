@@ -92,7 +92,8 @@ body{
     overflow: hidden;
     box-shadow: 1px 1px 5px #aaa;
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    justify-content: center
 }
 .header{
     position: absolute;
@@ -118,13 +119,10 @@ body{
 }
 .stage{
     position: absolute;
-    font-size: 28px;
-    margin-left: 30px;
+    font-size: 32px;
     color: #E3B968;
-    width: 100%;
-    top: 0;
-    left: 0;
-    text-align: center
+    text-shadow: 1px 0 5px #ddd;
+    align-self: center;
 }
 .btn{
     font-size: 18px;

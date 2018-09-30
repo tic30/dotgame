@@ -4,7 +4,7 @@ const slider = document.getElementById("myRange"),
     startBtn = document.getElementById("startbtn"),
     colors = ["#176BEF", "#FF3E30", "#F7B529", "#179C52"],
     tickRatio = 30
-let speed, pause, dotarr, timecounter, dotId, windowWidth
+let speed, pause, dotarr, timecounter, dotId, windowWidth, score
 
 function init() {
     speed = 10
@@ -12,7 +12,7 @@ function init() {
     dotarr = []
     timecounter = 0
     dotId = -1
-    render()
+    score = 0
 }
 
 function renderTemplate(template, data) {
@@ -65,7 +65,7 @@ function timeTick() {
     }
     //move
     for (let i = 0; i < dotarr.length; i++) {
-        dotarr[i].top += Math.floor(speed/tickRatio)
+        dotarr[i].top += Math.ceil(speed/tickRatio)
     }
     //clean up
     var i
@@ -82,26 +82,28 @@ function timeTick() {
 function handleDotClick(ele){
     if (pause) return
     let audioEle = document.getElementById("beep"),
-        score
+        addscore
     audioEle.currentTime = 0
     audioEle.play()
     for (let i = 0; i < dotarr.length; i++) {
         if (dotarr[i].id == ele.id){
-            score = Math.ceil((100-dotarr[i].width)/9)
+            addscore = Math.ceil((100-dotarr[i].width)/9)
             dotarr.splice(i,1)
             break
         }
     }
-    addScore(score)
+    addScore(addscore)
     render()
 }
 
-function addScore(score){
+function addScore(addscore){
     let scoreEle = document.querySelector(".score"),
-        newScore = parseInt(scoreEle.innerHTML)+score,
-        newStage = Math.ceil(newScore/100)
-    scoreEle.innerHTML = newScore + ""
-    // checkStage(newStage)
+        newStage = Math.ceil((score+addscore)/50)
+    if(Math.ceil(score/50) !== newStage){
+        checkStage(newStage)
+    }
+    score += addscore
+    scoreEle.innerHTML = score + ""
     changeCharacter(newStage)
 }
 
@@ -114,6 +116,10 @@ function checkStage(stage){
         title = "Stage " + stage
     }
     stageEle.innerHTML = title
+    stageEle.style.display = "block"
+    setTimeout(function(){
+        stageEle.style.display = "none"
+    }, 1500)
 }
 
 function changeCharacter(stage){

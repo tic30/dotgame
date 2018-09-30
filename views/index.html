@@ -17,20 +17,25 @@
     </div>
     <div class="container">
         <div class="header">
-            <div>
-                <h1 class="score">0</h1>
-                <div class="slidecontainer">
-                    <input type="range" min="10" max="100" value="10" class="slider" id="myRange">
-                    <p class="subtitle">Speed: <span id="demo"></span></p>
+            <img class="titleImg" src="./title.png">
+            <div class="info">
+                <span class="score">0</span>
+                <div class="controls">
+                    <div class="slidecontainer">
+                        <input type="range" min="10" max="100" value="10" class="slider" id="myRange">
+                        <p class="subtitle">Speed: <span id="demo"></span></p>
+                    </div>
                 </div>
             </div>
-            <button class="btn" id="startbtn" onclick="start()">Start</button>
+            <button class="btn" id="startbtn" onclick="start()">Play!</button>
         </div>
         <div id="game-body"></div>
     </div>
+    <!-- <div class="stage">Stage 1</div> -->
     <script id="template" type="text/html">
-    <div class="dot star" id="{id}" style="width:{width}px; height:{width}px; top:{top}px; left:{x}px;" onmousedown="handleDotClick(this)"></div>
-  </script>
+        <div class="dot star" id="{id}" style="width:{width}px; height:{width}px; top:{top}px; left:{x}px;" onmousedown="handleDotClick(this)"></div>
+    </script>
+    <audio src="beep.mp3" autostart="false" width="0" height="0" id="beep" enablejavascript="true"></audio>
     <script src="/index.js"></script>
 </body>
 

@@ -35,7 +35,7 @@ function render() {
 function start() {
     if (!pause) {
         pause = true
-        startBtn.innerText = "Start"
+        startBtn.innerText = "Play!"
     } else {
         pause = false
         startBtn.innerText = "Pause"
@@ -80,8 +80,11 @@ function timeTick() {
 }
 
 function handleDotClick(ele){
-    // if (pause) return
-    let score
+    if (pause) return
+    let audioEle = document.getElementById("beep"),
+        score
+    audioEle.currentTime = 0
+    audioEle.play()
     for (let i = 0; i < dotarr.length; i++) {
         if (dotarr[i].id == ele.id){
             score = Math.ceil((100-dotarr[i].width)/9)
@@ -94,8 +97,31 @@ function handleDotClick(ele){
 }
 
 function addScore(score){
-    let scoreEle = document.querySelector(".score")
-    scoreEle.innerHTML = parseInt(scoreEle.innerHTML)+score + ""
+    let scoreEle = document.querySelector(".score"),
+        newScore = parseInt(scoreEle.innerHTML)+score,
+        newStage = Math.ceil(newScore/100)
+    scoreEle.innerHTML = newScore + ""
+    // checkStage(newStage)
+    changeCharacter(newStage)
+}
+
+function checkStage(stage){
+    let title = "",
+        stageEle = document.querySelector(".stage")
+    if(stage >= 9){
+        title = "Ultimate Stage!!"
+    }else{
+        title = "Stage " + stage
+    }
+    stageEle.innerHTML = title
+}
+
+function changeCharacter(stage){
+    if(stage >= 9){
+        gameBody.style.cursor = "url('./cursor9.png') 25 25, auto"
+    }else if(stage > 1){
+        gameBody.style.cursor = "url('./cursor" + stage + ".png') 25 25, auto"
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -112,4 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 window.onload = function(){
     document.querySelector(".preloader").classList.add("pre-clip")
+    setTimeout(function(){
+        start()
+    }, 1000)
 }

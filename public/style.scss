@@ -96,52 +96,60 @@ body{
 }
 .header{
     position: absolute;
-    left: 10px;
     top: 10px;
-    height: 100px;
-    width: calc(100% - 20px);
-    max-width: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background-color: white;
+    left: 10px;
     z-index: 1;
-    padding: 0 20px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    color: white
+}
+.header .info{
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px 0
+}
+.header .titleImg{
+    height: 120px;
+}
+.header .score{
+    font-size: 40px;
+} 
+.header .controls{
+    display: flex
+}
+.stage{
+    position: absolute;
+    font-size: 28px;
+    margin-left: 30px;
+    color: #E3B968;
+    width: 100%;
+    top: 0;
+    left: 0;
+    text-align: center
 }
 .btn{
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    width: 100px;
-    height: 40px;
     font-size: 18px;
-    outline: none
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: #46B0FD;
+    text-transform: uppercase;
+    vertical-align: top;
+    margin: 55px 0 0 5px;
 }
 .btn:hover{
     cursor: pointer;
-    box-shadow: 1px 1px 5px #aaa;
-}
-.slidecontainer {
-    width: 100%;
 }
 
 .slider {
     -webkit-appearance: none;
-    width: 200px;
+    width: 150px;
     height: 10px;
     margin-left: -2px;
     border-radius: 5px;
     background: #d3d3d3;
     outline: none;
-    opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
-}
-
-.slider:hover {
-    opacity: 1;
 }
 
 .slider::-webkit-slider-thumb {
@@ -150,7 +158,7 @@ body{
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: white;
+    background-color: #46B0FD;
     box-shadow: 0px 0px 3px #333;
     cursor: pointer;
 }
@@ -166,7 +174,7 @@ body{
 #game-body{
     position: relative;
     flex-grow: 1;
-    cursor: url('./cursor.png'), auto;	
+    cursor: url('./cursor.png') 25 25, auto;	
 }
 
 .star{
@@ -177,7 +185,7 @@ body{
     position: absolute;
 }
 .dot:hover{
-    cursor: url('./inhale.png'), auto;;
+    cursor: url('./inhale.png') 25 25, auto;;
 }
 
 .score{
@@ -186,6 +194,28 @@ body{
 }
 
 .subtitle{
-    margin: 0;
-    font-size: 12px
+    margin: 5px 0;
+    font-size: 12px;
+    color: #aaa;
+}
+
+@media only screen and (max-width: 600px) {
+    .header{
+        left: 0;
+    }
+    .header .titleImg{
+        height: 70px
+    }
+    .header .info{
+        margin:0
+    }
+    .header .score{
+        font-size: 20px
+    }
+    .subtitle{
+        font-size: 10px
+    }
+    .btn{
+        margin: 20px 0 0 0;
+    }
 }
